@@ -1,5 +1,11 @@
+import SearchMovie from "./components/SearchMovie";
+
 const App = () => {
-  return <h1>Hello!</h1>;
+  return (
+    <div className="bg-slate-800 h-[100vh]">
+      <SearchMovie />
+    </div>
+  );
 };
 
 export default App;
