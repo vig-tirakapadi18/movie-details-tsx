@@ -12,7 +12,6 @@ interface IMovieDetails {
 }
 
 const MovieDetails = (props: IMovieDetails) => {
-  console.log(props.movieDetails);
   return (
     <div className="bg-slate-300 mx-auto w-[50%] p-4 rounded-md">
       <h1 className="text-center font-bold text-3xl border-b-2 border-slate-700 text-slate-700">

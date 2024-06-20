@@ -3,7 +3,8 @@ import MovieDetails from "./MovieDetails";
 
 const SearchMovie = () => {
   const [movieName, setMovieName] = useState<string>("");
-  const [movieDetails, setMovieDetails] = useState();
+  const [movieDetails, setMovieDetails] = useState<any>();
+  const [error, setError] = useState<string>();
 
   const apiKey = "f9a45b2e";
 
@@ -12,15 +13,24 @@ const SearchMovie = () => {
   ) => {
     event.preventDefault();
 
-    const movieResponse = await fetch(
-      `https://www.omdbapi.com/?i=tt3896198&apikey=${apiKey}&t=${movieName}`
-    );
+    try {
+      setError("");
+      const movieResponse = await fetch(
+        `https://www.omdbapi.com/?i=tt3896198&apikey=${apiKey}&t=${movieName}`
+      );
 
-    const movieResponseData = await movieResponse.json();
-    setMovieDetails(movieResponseData);
-
-    console.log(movieResponseData);
+      const movieResponseData = await movieResponse.json();
+      console.log(movieResponseData);
+      if (movieResponseData.Error) setError(movieResponseData.Error);
+      if (!movieResponseData.Error) setError("");
+      setMovieDetails(movieResponseData);
+      console.log(movieResponseData.Error);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  console.log(movieDetails);
 
   return (
     <>
@@ -39,8 +49,14 @@ const SearchMovie = () => {
           Get Movie Details
         </button>
       </form>
-
-      <MovieDetails movieDetails={movieDetails} />
+      {!error && movieDetails?.Title && (
+        <MovieDetails movieDetails={movieDetails} />
+      )}
+      {error && (
+        <p className="text-2xl text-center bg-rose-500 mx-[20%] text-white rounded-md p-3">
+          ❌ {error}
+        </p>
+      )}
     </>
   );
 };

@@ -14,3 +14,5 @@
 7. Displayed the data on the UI
 
 8. Styled the project using tailwindCSS
+
+9. Displayed "Movie not found!" message if the movie is not found

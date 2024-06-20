@@ -2,7 +2,7 @@ import SearchMovie from "./components/SearchMovie";
 
 const App = () => {
   return (
-    <div className="bg-slate-800 h-[100vh]">
+    <div className="bg-neutral-900 h-[100vh]">
       <SearchMovie />
     </div>
   );
